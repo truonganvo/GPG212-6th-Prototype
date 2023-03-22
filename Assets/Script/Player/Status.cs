@@ -82,8 +82,10 @@ public class Status : MonoBehaviour
     private IEnumerator IncreaseDamage()
     {
         increasedDamage = true;
+        healIndicate.SetActive(true);
         Debug.Log("Increase Damage taken");
         yield return new WaitForSeconds(10f);
+        healIndicate.SetActive(false);
         increasedDamage = false;
     }
 
@@ -99,15 +101,7 @@ public class Status : MonoBehaviour
                 Debug.Log("Max Health already");
             }
             StartCoroutine(IncreaseDamage());
-            StartCoroutine(HealthLetter());
         }
-    }
-
-    private IEnumerator HealthLetter()
-    {
-        healIndicate.SetActive(true);
-        yield return new WaitForSeconds(10f);
-        healIndicate.SetActive(false);
     }
 
 }
