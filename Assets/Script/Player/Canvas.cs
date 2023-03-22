@@ -10,6 +10,8 @@ public class Canvas : MonoBehaviour
     public float nextEnableDelay;
     public GameObject disableTheList;
 
+    [SerializeField] GameObject enableAfterConver;
+
     void Start()
     {
         // Enable the first object in the list after the specified delay
@@ -53,5 +55,6 @@ public class Canvas : MonoBehaviour
     void DisableTheList()
     {
         disableTheList.SetActive(false);
+        enableAfterConver.SetActive(true);
     }
 }
