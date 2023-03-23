@@ -9,7 +9,7 @@ using TMPro;
 public class Status : MonoBehaviour
 {
     [SerializeField] int maxhealth = 100;
-    [SerializeField] int damageAmount = 5;
+    [SerializeField] int damageAmount = 10;
     public int currentHealth;
     [SerializeField] TextMeshProUGUI healthText;
 
@@ -73,7 +73,7 @@ public class Status : MonoBehaviour
     {
         if (increasedDamage == true)
         {
-            currentHealth -= damageAmount + 15;
+            currentHealth -= damageAmount + 10;
         }
         else
         {
