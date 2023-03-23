@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Status : MonoBehaviour
 {
     [SerializeField] int maxhealth = 100;
     [SerializeField] int damageAmount = 5;
     public int currentHealth;
+    [SerializeField] TextMeshProUGUI healthText;
 
     //health slider & change colour
     public Slider healthSlider;
@@ -15,10 +19,15 @@ public class Status : MonoBehaviour
     public Image fill;
 
     //Trigger to take more damage during Healing
-
     private bool canTakeDamage = true;
     private bool increasedDamage = false;
     [SerializeField] GameObject healIndicate;
+
+    //Delay Healing
+    public KeyCode H;
+    private float cooldownTime = 10f;
+    private bool isCoolDown = false;
+
 
 
     private void Start()
@@ -29,7 +38,8 @@ public class Status : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.H))
+        healthText.text = currentHealth.ToString();
+        if (Input.GetKey(H) && !isCoolDown)
         {
             Heal();
         }
@@ -74,6 +84,7 @@ public class Status : MonoBehaviour
         {
             // Player has died
             Debug.Log("Player has died.");
+            SceneManager.LoadScene("GameOverScene");
             // Optionally, you could restart the game or take other actions here.
         }
     }
@@ -89,18 +100,26 @@ public class Status : MonoBehaviour
         increasedDamage = false;
     }
 
+    private IEnumerator KeyCooldownCoroutine()
+    {
+        yield return new WaitForSeconds(cooldownTime);
+        isCoolDown = false;
+    }
+
     //Heal
     public void Heal()
     {
         if (currentHealth < maxhealth)
         {
-            currentHealth += 10;
+            isCoolDown = true;
+            currentHealth += 15;
             if (currentHealth > maxhealth)
             {
                 currentHealth = maxhealth;
                 Debug.Log("Max Health already");
             }
             StartCoroutine(IncreaseDamage());
+            StartCoroutine(KeyCooldownCoroutine());
         }
     }
 

@@ -30,8 +30,13 @@ public class ChangeScene : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
-    public void End()
+    public void GameOverScene()
     {
-        SceneManager.LoadScene("EndScene");
+        _endingScreenTransition.SetActive(true);
+        Invoke("MainMenu", 1.5f);
+    }
+    private void MainMenu()
+    {
+        SceneManager.LoadScene("Introduction");
     }
 }
