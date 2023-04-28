@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Protect!");
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
         }
     }
 }
