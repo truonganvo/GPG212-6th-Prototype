@@ -5,7 +5,9 @@ using UnityEngine;
 public class AI : MonoBehaviour
 {
     [SerializeField] float speed = 10f;
+    [SerializeField] ParticleSystem deathVFX;
     private Rigidbody2D rb;
+    public int health = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -24,5 +26,16 @@ public class AI : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+    public void Die()
+    {
+        Destroy(gameObject);
+        Instantiate(deathVFX, gameObject.transform.position, Quaternion.identity);
+        Debug.Log("DIE!");
     }
 }

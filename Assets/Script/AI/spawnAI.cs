@@ -26,10 +26,4 @@ public class spawnAI : MonoBehaviour
             SpawnEnemy();
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
