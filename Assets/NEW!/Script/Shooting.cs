@@ -8,26 +8,27 @@ public class Shooting : MonoBehaviour
     public Transform firePoint;
     public float fireForce;
 
+    public bool isThrowYet;
 
-    public float fireRate = 0.25f;
-    public float nextFire = 0;
+    public GameObject companion;
+
 
     private void Start()
     {
-        
+        isThrowYet = false;
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && Time.time > nextFire)
+        if (Input.GetKey(KeyCode.Space) && !isThrowYet)
         {
-            nextFire = Time.time + fireRate;
             Fire();
         }
     }
     public void Fire()
     {
         Instantiate(bullet, firePoint.position, firePoint.rotation);
+        companion.SetActive(false);
+        isThrowYet = true;
     }
-
 }
