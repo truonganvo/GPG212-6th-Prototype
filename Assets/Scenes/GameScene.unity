@@ -4052,6 +4052,10 @@ PrefabInstance:
       propertyPath: bullet
       value: 
       objectReference: {fileID: 4474571775634468192, guid: f070e4e5fc7f9fa46abbb41e9dfa1fda, type: 3}
+    - target: {fileID: 319754549437605656, guid: 670bb3d496af2eb48a48cbe8c041959c, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 403306711319336194, guid: 670bb3d496af2eb48a48cbe8c041959c, type: 3}
       propertyPath: m_IsTrigger
       value: 0

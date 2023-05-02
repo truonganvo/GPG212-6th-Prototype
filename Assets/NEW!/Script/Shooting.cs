@@ -8,26 +8,26 @@ public class Shooting : MonoBehaviour
     public Transform firePoint;
     public float fireForce;
 
-    public int maxAmmo = 20;
-    public int currentAmmo;
-    public float reloadTime = 1f;
+
+    public float fireRate = 0.25f;
+    public float nextFire = 0;
 
     private void Start()
     {
-        currentAmmo = maxAmmo;
+        
     }
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && Time.time > nextFire)
         {
+            nextFire = Time.time + fireRate;
             Fire();
         }
     }
     public void Fire()
     {
         Instantiate(bullet, firePoint.position, firePoint.rotation);
-        currentAmmo--;
     }
 
 }
