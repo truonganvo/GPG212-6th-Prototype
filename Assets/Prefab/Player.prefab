@@ -43,9 +43,9 @@ GameObject:
   - component: {fileID: 5297418016693152089}
   - component: {fileID: 5297418016693152095}
   - component: {fileID: 3780707193980971983}
+  - component: {fileID: 319754549437605656}
   - component: {fileID: 5297418016693152092}
   - component: {fileID: 5297418016693152093}
-  - component: {fileID: 319754549437605656}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -183,6 +183,23 @@ MonoBehaviour:
   fill: {fileID: 0}
   healIndicate: {fileID: 0}
   H: 0
+--- !u!114 &319754549437605656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5297418016693152088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e4515eaef365b4aac7cb9dd2ff4743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  firePoint: {fileID: 7669501995668525586}
+  fireForce: 5
+  isThrowYet: 0
+  companion: {fileID: 7075280510232333998, guid: 5d1b596c9e64d3f4c8fe2fd5d12a54e1, type: 3}
 --- !u!50 &5297418016693152092
 Rigidbody2D:
   serializedVersion: 4
@@ -232,21 +249,3 @@ PolygonCollider2D:
     - - {x: 0, y: 0.5773587}
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
---- !u!114 &319754549437605656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5297418016693152088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86e4515eaef365b4aac7cb9dd2ff4743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
-  firePoint: {fileID: 7669501995668525586}
-  fireForce: 5
-  maxAmmo: 20
-  currentAmmo: 10
-  reloadTime: 1

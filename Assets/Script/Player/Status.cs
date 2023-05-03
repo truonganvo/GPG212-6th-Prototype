@@ -113,6 +113,7 @@ public class Status : MonoBehaviour
         {
             isCoolDown = true;
             currentHealth += 15;
+            SetHealth(currentHealth);
             if (currentHealth > maxhealth)
             {
                 currentHealth = maxhealth;
