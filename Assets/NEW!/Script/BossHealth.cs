@@ -13,6 +13,7 @@ public class BossHealth : MonoBehaviour
     [SerializeField] GameObject canvas3;
     [SerializeField] BossHealthBar healthBarSlider;
     private int bossMaxHealth = 1000;
+    private bool secondStage = false;
 
     public bool isVulnerable;
 
@@ -40,6 +41,7 @@ public class BossHealth : MonoBehaviour
             moveset1.SetActive(false);
             canvas2.SetActive(true);
             Invoke("SecondStage", 5f);
+            secondStage= true;
         }
 
         if (bossHealth <= 30)
@@ -54,8 +56,17 @@ public class BossHealth : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            bossHealth -= 10;
+            if (!secondStage)
+            {
+                bossHealth -= 10;
+            }
+            if (secondStage)
+            {
+                bossHealth -= 20;
+            }
+
             healthBarSlider.SetHealth(bossHealth);
+
         }
     }
 
