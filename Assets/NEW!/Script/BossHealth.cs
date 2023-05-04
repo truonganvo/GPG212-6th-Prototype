@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BossHealth : MonoBehaviour
 {
@@ -12,11 +13,13 @@ public class BossHealth : MonoBehaviour
     [SerializeField] GameObject canvas2;
     [SerializeField] GameObject canvas3;
     [SerializeField] BossHealthBar healthBarSlider;
-
-    private int bossMaxHealth = 1000;
+    [SerializeField] AudioClip clip;
+    [SerializeField] AudioSource bossExplode;
+    private int bossMaxHealth = 800;
     private bool secondStage = false;
 
     public bool canBeDamaged;
+    public float timer = 35f;
 
     private void Start()
     {
@@ -32,12 +35,13 @@ public class BossHealth : MonoBehaviour
 
     private void Update()
     {
-        if (bossHealth == 0)
+        if (bossHealth <= 0)
         {
            Destroy(gameObject);
+           SceneManager.LoadScene("WinScene");
         }
 
-        if (bossHealth <= 500)
+        if (bossHealth <= 400)
         {
             GetComponent<Animator>().SetBool("Second Stage", true);
             moveset1.SetActive(false);
@@ -50,6 +54,12 @@ public class BossHealth : MonoBehaviour
         {
             moveset2.SetActive(false);
             canvas3.SetActive(true);
+            bossExplode.PlayOneShot(clip);
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                SceneManager.LoadScene("NiceScene");
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

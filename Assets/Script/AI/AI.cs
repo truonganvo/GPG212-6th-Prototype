@@ -9,6 +9,9 @@ public class AI : MonoBehaviour
     private Rigidbody2D rb;
     public int health = 10;
 
+    [SerializeField] AudioSource deathSFX;
+    [SerializeField] AudioClip clip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,7 @@ public class AI : MonoBehaviour
     }
     public void Die()
     {
+        deathSFX.PlayOneShot(clip);
         ParticleSystem dieVFX = Instantiate(deathVFX, gameObject.transform.position, Quaternion.identity);
         Destroy(dieVFX.gameObject, 2f);
         Destroy(gameObject);
