@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dae2b86c59c18740a748627bd3846e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDeathVFX: {fileID: 5846087516966800560, guid: 878717a700c1b5545becbaa980cb2dbc, type: 3}
 --- !u!114 &7075280510232334001
 MonoBehaviour:
   m_ObjectHideFlags: 0

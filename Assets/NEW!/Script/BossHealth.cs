@@ -12,19 +12,21 @@ public class BossHealth : MonoBehaviour
     [SerializeField] GameObject canvas2;
     [SerializeField] GameObject canvas3;
     [SerializeField] BossHealthBar healthBarSlider;
+
     private int bossMaxHealth = 1000;
     private bool secondStage = false;
 
-    public bool isVulnerable;
+    public bool canBeDamaged;
 
     private void Start()
     {
         healthBarSlider.SetMaxHealth(bossMaxHealth);
         bossHealth = bossMaxHealth;
-        isVulnerable = true;
-        if (isVulnerable)
+        canBeDamaged = false;
+        if (canBeDamaged == false)
         {
-            Invoke("RemoveVulnerable", 5f);
+            Invoke("MakeBossAbleToBeDamaged", 5f);
+            Debug.Log("MakeBossAbleToBeDamaged");
         }
     }
 
@@ -44,7 +46,7 @@ public class BossHealth : MonoBehaviour
             secondStage= true;
         }
 
-        if (bossHealth <= 30)
+        if (bossHealth <= 50)
         {
             moveset2.SetActive(false);
             canvas3.SetActive(true);
@@ -52,7 +54,7 @@ public class BossHealth : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isVulnerable) return;
+        if (canBeDamaged == false) return;
 
         if (collision.gameObject.CompareTag("Bullet"))
         {
@@ -75,8 +77,9 @@ public class BossHealth : MonoBehaviour
         moveset2.SetActive(true);
     }
 
-    public void RemoveVulnerable()
+    public void MakeBossAbleToBeDamaged()
     {
-        isVulnerable = false;
+        canBeDamaged = true;
+        Debug.Log("Take no damage");
     }
 }

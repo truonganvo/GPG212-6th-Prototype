@@ -34,8 +34,9 @@ public class AI : MonoBehaviour
     }
     public void Die()
     {
+        ParticleSystem dieVFX = Instantiate(deathVFX, gameObject.transform.position, Quaternion.identity);
+        Destroy(dieVFX.gameObject, 2f);
         Destroy(gameObject);
-        Instantiate(deathVFX, gameObject.transform.position, Quaternion.identity);
         Debug.Log("DIE!");
     }
 }
